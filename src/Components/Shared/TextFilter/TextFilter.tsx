@@ -10,12 +10,10 @@ function TextFilter(): JSX.Element {
     const [text, setText] = useState<Text1>(store.getState().textReducer.text);
       
     const changeText = () => {
-        if (text === 'light') {
-            setText('dark');
-        } else {
-            setText('light');
+        if (text.length == 2){
+            console.log(text);
         }
-
+        console.log(text.length, text);
         // store.dispatch(toggleTheme(theme));
         dispatch(updateText(text));
     }
@@ -24,8 +22,8 @@ function TextFilter(): JSX.Element {
         <div className="TextFilter">
 		 <input
             type="text"
-            placeholder={'aaaa'}
-            value={'light'}
+            placeholder={'qqq'}
+            
             onChange={changeText}
           />
 
