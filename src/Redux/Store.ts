@@ -2,13 +2,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { tasksReducer } from './TaskAppState';
 import { themeReducer } from './ThemeAppState';
+import { textReducer } from './TextFilterState';
 
 
 // This is rootReducer
 const rootReducer = {
     tasksReducer: tasksReducer,
     // add more reducers here if needed
-    themeReducer:themeReducer
+    themeReducer:themeReducer,
+    textReducer:textReducer
 };
 
 // This is store object

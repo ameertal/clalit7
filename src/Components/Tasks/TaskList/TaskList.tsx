@@ -8,21 +8,13 @@ import notifyService from "../../../Services/NotifcationService";
 import store from "../../../Redux/Store";
 import { gotAllTasksAction } from "../../../Redux/TaskAppState";
 import { useDispatch } from "react-redux";//@@@@@@@@@@@@
-import FilterText from "../../Shared/FilterText/FilterText";
+import TextFilter from "../../Shared/TextFilter/TextFilter";
 
 function TaskList(): JSX.Element {
 
     const dispatch = useDispatch();//@@@@@@@@@@@@
     const [tasks, setTasks] = useState<TaskModel[]>(store.getState().tasksReducer.tasks);
-    
-    let subTasks:TaskModel[] = [];
-    for (let i = 0; i < store.getState().tasksReducer.tasks.length; i++) {
-        if (store.getState().tasksReducer.tasks[i].title.includes("B")){
-            // console.log(store.getState().tasksReducer.tasks[i]);
-            subTasks.push(store.getState().tasksReducer.tasks[i])
-        }
-      }
-    console.log(subTasks);
+
     //Mounting ~ componentDidMount
     useEffect(() => {
         if (tasks?.length === 0) {
@@ -41,16 +33,17 @@ function TaskList(): JSX.Element {
     return (
         <div className="TaskList">
             <div className="center">
-                <h1>Task List</h1>                
+                <h1>Task List</h1>
             </div>
-            <div><FilterText/></div>
+            <div><TextFilter/></div>
             <div className="displayList">
                 {
-                    subTasks.map(t =>
+                    tasks.map(t =>
                         <TaskCard
                             key={'task ' + t.id}
-                            task={t} />                            
+                            task={t} />
                     )
+
                 }
             </div>
 

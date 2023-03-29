@@ -25,14 +25,12 @@ const themeSlice = createSlice({
         toggleTheme(state, action: PayloadAction<Theme>) {
             state.theme = action.payload;
         },
-
     },
 });
 
 //This is the exported tasks
 export const {
     toggleTheme,
-
 } = themeSlice.actions;
 
 
