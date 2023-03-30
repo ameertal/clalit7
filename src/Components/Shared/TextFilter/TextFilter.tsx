@@ -1,34 +1,33 @@
-import { useState, ChangeEvent} from "react";
+import { useState, ChangeEvent } from "react";
 import "./TextFilter.css";
 import { Text1 } from "../../../Models/TextFilterModel";
 import store from "../../../Redux/Store";
-import { updateText } from "../../../Redux/TextFilterState";
-import { useDispatch } from "react-redux";
+import { setTextInput } from "../../../Redux/TextFilterState";
+import { useDispatch, useSelector } from "react-redux";
+
+
 
 function TextFilter(): JSX.Element {
-    const dispatch = useDispatch();
-    const [text, setText] = useState<Text1>(store.getState().textReducer.text);
-      
-    const changeText = () => {
-        if (text.length == 2){
-            console.log(text);
-        }
-        console.log(text.length, text);
-        // store.dispatch(toggleTheme(theme));
-        dispatch(updateText(text));
-    }
-    
-    return (
-        <div className="TextFilter">
-		 <input
-            type="text"
-            placeholder={'qqq'}
-            
-            onChange={changeText}
-          />
+  const dispatch = useDispatch();
 
-        </div>
-    );
+  const textInput = useSelector((state: Text1) => state.textInput);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value: newValue } = event.target;
+    dispatch(setTextInput(newValue));
+  };
+
+  return (
+    <div className="TextFilter">
+
+    <input type="text" value={textInput} onChange={handleChange} />
+
+      {/* 👇 Use the input value from state */}
+      <p>Your_input: {store.getState().textReducer.textInput}</p>
+    </div>
+  );
 }
 
 export default TextFilter;
+
+

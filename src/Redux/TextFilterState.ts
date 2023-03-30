@@ -1,16 +1,20 @@
 //This is TextFilterState.ts file
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Text1 } from '../Models/TextFilterModel';
 
 //This is the Contract
-interface TextState {
-    text: Text1;
-}
+// interface TextState {
+//     text: '';
+// }
 
 //This is the initialized Task Application State - initialize within empty array
-const initialState: TextState = {
-    text: 'light',
-};
+// const initialState: TextState = {
+//     text: '',
+// };
+
+const initialState: Text1 = {
+    textInput: '',
+  };
 
 //These are all possible actions
 export enum ActionType {
@@ -22,17 +26,27 @@ const textSlice = createSlice({
     name: "text",
     initialState,
     reducers: {
-        updateText(state, action: PayloadAction<Text1>) {
-            state.text = action.payload;
-        },
+        setTextInput: (state, action: PayloadAction<string>) => {
+            state.textInput = action.payload;
+          },
+      
+        // updateText(state, action: PayloadAction<Text1>) {
+        //     state.textInput = action.payload;
+        // },
     },
 });
 
 //This is the exported tasks
 export const {
-    updateText,
+    setTextInput,
 } = textSlice.actions;
-
 
 //Export the reducer
 export const textReducer = textSlice.reducer;
+
+// export default configureStore({
+//     reducer: {
+//         text: textSlice.reducer,
+//     },
+//   });
+  

@@ -2,7 +2,6 @@
 import { Notyf } from "notyf";
 
 class NotificationService{
-
     private notification = new Notyf({duration:4000, position:{x:"left",y:"top"}});
 
     public success(message: string) {
@@ -13,6 +12,5 @@ class NotificationService{
         this.notification.error(message);
     }
 }
-
 const notifyService = new NotificationService();
 export default notifyService;
